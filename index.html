@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaszek & Anthropic — Buenos Aires Hackathon</title>
+  <meta name="description" content="The first Anthropic hackathon in Latin America. Buenos Aires, April 15, 2025.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #FAF9F5;
+      --color-surface: #FFFFFF;
+      --color-text: #141413;
+      --color-text-secondary: #5A5A58;
+      --color-accent: #E8784D;
+      --color-accent-hover: #D4673F;
+      --color-border: #E5E4E0;
+      --color-highlight: #191A1A;
+      --color-highlight-text: #FAF9F5;
+      --color-tag-bg: #F0EFEB;
+      --color-tag-text: #3D3D3C;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --max-width: 1120px;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2.5rem;
+      --space-xl: 4rem;
+      --space-xxl: 6rem;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* --- NAV --- */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      background: rgba(250, 249, 245, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0.875rem clamp(1.5rem, 4vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logos {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-logos .ampersand {
+      color: var(--color-text-secondary);
+      font-weight: 400;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .lang-toggle {
+      display: flex;
+      background: var(--color-tag-bg);
+      border-radius: 6px;
+      overflow: hidden;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .lang-toggle button {
+      padding: 0.35rem 0.75rem;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      transition: all 0.2s;
+    }
+
+    .lang-toggle button.active {
+      background: var(--color-highlight);
+      color: var(--color-highlight-text);
+      border-radius: 5px;
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1.25rem;
+      background: var(--color-highlight);
+      color: var(--color-highlight-text);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 8px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* --- SECTIONS --- */
+    .section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+    }
+
+    /* --- HERO --- */
+    .hero {
+      padding-top: calc(5rem + var(--space-xxl));
+      padding-bottom: var(--space-xl);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+    }
+
+    .hero-eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.08;
+      margin-bottom: var(--space-md);
+      max-width: 900px;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      color: var(--color-text-secondary);
+      max-width: 640px;
+      line-height: 1.55;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md) var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-meta-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-secondary);
+      margin-bottom: 0.2rem;
+    }
+
+    .hero-meta-value {
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: var(--color-accent);
+      color: #fff;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: background 0.2s;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+
+    .btn-primary:hover { background: var(--color-accent-hover); }
+
+    .btn-primary svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* --- HIGHLIGHT BANNER --- */
+    .highlight-banner {
+      background: var(--color-highlight);
+      color: var(--color-highlight-text);
+      border-radius: 16px;
+      padding: var(--space-lg) var(--space-xl);
+      margin-bottom: var(--space-xxl);
+      text-align: center;
+    }
+
+    .highlight-banner h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: var(--space-sm);
+    }
+
+    .highlight-banner p {
+      font-size: 1.05rem;
+      opacity: 0.78;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* --- TRACKS --- */
+    .tracks-section {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xxl);
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+      margin-bottom: var(--space-xs);
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: var(--space-lg);
+    }
+
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-sm);
+    }
+
+    .track-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-md);
+      transition: border-color 0.2s;
+    }
+
+    .track-card:hover { border-color: var(--color-text-secondary); }
+
+    .track-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .track-card .sponsor {
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* --- SPEAKERS --- */
+    .speakers-section {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xxl);
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-md);
+    }
+
+    .speaker-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: var(--space-lg);
+      text-align: center;
+    }
+
+    .speaker-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: var(--color-tag-bg);
+      margin: 0 auto var(--space-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--color-text-secondary);
+    }
+
+    .speaker-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .speaker-card .role {
+      font-size: 0.88rem;
+      color: var(--color-text-secondary);
+      line-height: 1.4;
+    }
+
+    /* --- MENTORS --- */
+    .mentors-section {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xxl);
+    }
+
+    .mentors-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.625rem;
+    }
+
+    .mentor-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.55rem 1.1rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .mentor-tag:hover {
+      border-color: var(--color-text-secondary);
+      background: var(--color-tag-bg);
+    }
+
+    /* --- AGENDA --- */
+    .agenda-section {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xxl);
+    }
+
+    .agenda-date {
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+      font-weight: 500;
+      margin-bottom: var(--space-lg);
+    }
+
+    .agenda-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .agenda-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: var(--space-md);
+      padding: var(--space-md) 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .agenda-item:last-child {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .agenda-time {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-text);
+      white-space: nowrap;
+    }
+
+    .agenda-content h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .agenda-content p {
+      font-size: 0.88rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* --- CTA --- */
+    .cta-section {
+      padding-top: var(--space-xl);
+      padding-bottom: var(--space-xxl);
+      text-align: center;
+    }
+
+    .cta-box {
+      background: var(--color-highlight);
+      color: var(--color-highlight-text);
+      border-radius: 16px;
+      padding: var(--space-xl) var(--space-lg);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .cta-box p {
+      opacity: 0.78;
+      margin-bottom: var(--space-md);
+      font-size: 1rem;
+    }
+
+    .btn-light {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      background: #fff;
+      color: var(--color-highlight);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-light:hover { opacity: 0.9; }
+
+    /* --- FOOTER --- */
+    .footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-lg) 0;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+    }
+
+    .footer-inner a {
+      color: var(--color-text-secondary);
+      text-decoration: underline;
+    }
+
+    /* --- LANG TOGGLING --- */
+    [data-lang-en] { display: none; }
+    [data-lang-es] { display: revert; }
+
+    html[lang="en"] [data-lang-en] { display: revert; }
+    html[lang="en"] [data-lang-es] { display: none; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 640px) {
+      .hero { padding-top: calc(4.5rem + var(--space-xl)); }
+      .agenda-item {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+      }
+      .speakers-grid {
+        grid-template-columns: 1fr;
+      }
+      .highlight-banner {
+        padding: var(--space-md) var(--space-md);
+        border-radius: 12px;
+      }
+      .nav-cta span { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <div class="nav-logos">
+      <span>Kaszek</span>
+      <span class="ampersand">&</span>
+      <span>Anthropic</span>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="active" data-set-lang="es">ES</button>
+        <button data-set-lang="en">EN</button>
+      </div>
+      <a href="https://lu.ma/bz4v7m2a" target="_blank" rel="noopener" class="nav-cta">
+        <span data-lang-es>Aplicar</span>
+        <span data-lang-en>Apply</span>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="section hero">
+  <div class="hero-eyebrow">
+    <span class="dot"></span>
+    <span data-lang-es>Por primera vez en Latinoamerica</span>
+    <span data-lang-en>For the first time in Latin America</span>
+  </div>
+
+  <h1>
+    <span data-lang-es>Buenos Aires Hackathon</span>
+    <span data-lang-en>Buenos Aires Hackathon</span>
+  </h1>
+
+  <p class="hero-sub">
+    <span data-lang-es>Anthropic llega por primera vez a Argentina y Buenos Aires junto a Kaszek. Un dia completo para construir con Claude &mdash; el primer hackathon de Anthropic en toda Latinoamerica.</span>
+    <span data-lang-en>Anthropic arrives in Argentina and Buenos Aires for the first time, together with Kaszek. A full day of building with Claude &mdash; Anthropic's first-ever hackathon in all of Latin America.</span>
+  </p>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label" data-lang-es>Fecha</span>
+      <span class="hero-meta-label" data-lang-en>Date</span>
+      <span class="hero-meta-value">
+        <span data-lang-es>15 de Abril, 2025</span>
+        <span data-lang-en>April 15, 2025</span>
+      </span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label" data-lang-es>Ubicacion</span>
+      <span class="hero-meta-label" data-lang-en>Location</span>
+      <span class="hero-meta-value">Buenos Aires, Argentina</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label" data-lang-es>Formato</span>
+      <span class="hero-meta-label" data-lang-en>Format</span>
+      <span class="hero-meta-value">
+        <span data-lang-es>Presencial &middot; 1 dia</span>
+        <span data-lang-en>In-person &middot; 1 day</span>
+      </span>
+    </div>
+  </div>
+
+  <a href="https://lu.ma/bz4v7m2a" target="_blank" rel="noopener" class="btn-primary">
+    <span data-lang-es>Aplicar ahora</span>
+    <span data-lang-en>Apply now</span>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+  </a>
+</section>
+
+<!-- HIGHLIGHT BANNER -->
+<div class="section">
+  <div class="highlight-banner">
+    <h2>
+      <span data-lang-es>El primer hackathon de Anthropic en Latinoamerica</span>
+      <span data-lang-en>Anthropic's first hackathon in Latin America</span>
+    </h2>
+    <p>
+      <span data-lang-es>Por primera vez, Anthropic y Kaszek traen un hackathon a Argentina. Un dia entero para construir, aprender y competir con Claude en Buenos Aires.</span>
+      <span data-lang-en>For the first time, Anthropic and Kaszek bring a hackathon to Argentina. A full day to build, learn, and compete with Claude in Buenos Aires.</span>
+    </p>
+  </div>
+</div>
+
+<!-- TRACKS -->
+<section class="section tracks-section">
+  <p class="section-label">Tracks</p>
+  <h2 class="section-title">
+    <span data-lang-es>Elige tu track</span>
+    <span data-lang-en>Choose your track</span>
+  </h2>
+  <div class="tracks-grid">
+    <div class="track-card">
+      <h3>Ecommerce</h3>
+      <p class="sponsor">
+        <span data-lang-es>Patrocinado por TiendaNube / Meli</span>
+        <span data-lang-en>Sponsored by TiendaNube / Meli</span>
+      </p>
+    </div>
+    <div class="track-card">
+      <h3>Fintech Infrastructure</h3>
+      <p class="sponsor">
+        <span data-lang-es>Patrocinado por Pomelo / Tapi</span>
+        <span data-lang-en>Sponsored by Pomelo / Tapi</span>
+      </p>
+    </div>
+    <div class="track-card">
+      <h3>
+        <span data-lang-es>Educacion</span>
+        <span data-lang-en>Education</span>
+      </h3>
+      <p class="sponsor">
+        <span data-lang-es>Patrocinado por DigitalHouse / Cometa</span>
+        <span data-lang-en>Sponsored by DigitalHouse / Cometa</span>
+      </p>
+    </div>
+    <div class="track-card">
+      <h3>Open</h3>
+      <p class="sponsor">
+        <span data-lang-es>Patrocinado por Anthropic / Kaszek</span>
+        <span data-lang-en>Sponsored by Anthropic / Kaszek</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKERS -->
+<section class="section speakers-section">
+  <p class="section-label">Speakers</p>
+  <h2 class="section-title">
+    <span data-lang-es>Speakers principales</span>
+    <span data-lang-en>Keynote speakers</span>
+  </h2>
+  <div class="speakers-grid">
+    <div class="speaker-card">
+      <div class="speaker-avatar">A</div>
+      <h3>Anthropic</h3>
+      <p class="role">
+        <span data-lang-es>Speaker por confirmar</span>
+        <span data-lang-en>Speaker to be confirmed</span>
+      </p>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">HK</div>
+      <h3>Hernan Kazah</h3>
+      <p class="role">
+        <span data-lang-es>Fundador, Kaszek & MercadoLibre</span>
+        <span data-lang-en>Founder, Kaszek & MercadoLibre</span>
+      </p>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">DR</div>
+      <h3>Daniel Rabinovich</h3>
+      <p class="role">
+        <span data-lang-es>Ex-CTO & COO, MercadoLibre &middot; Anthropic Advisory Board</span>
+        <span data-lang-en>Former CTO & COO, MercadoLibre &middot; Anthropic Advisory Board</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- MENTORS -->
+<section class="section mentors-section">
+  <p class="section-label">Mentors</p>
+  <h2 class="section-title">
+    <span data-lang-es>Mentores del hackathon</span>
+    <span data-lang-en>Hackathon mentors</span>
+  </h2>
+  <p style="color: var(--color-text-secondary); margin-bottom: var(--space-md); font-size: 0.95rem;">
+    <span data-lang-es>Expertos de las mejores empresas de tecnologia de la region estaran disponibles durante todo el dia.</span>
+    <span data-lang-en>Experts from the region's top tech companies will be available throughout the day.</span>
+  </p>
+  <div class="mentors-grid">
+    <span class="mentor-tag">Anthropic</span>
+    <span class="mentor-tag">Kaszek</span>
+    <span class="mentor-tag">MercadoLibre</span>
+    <span class="mentor-tag">TiendaNube</span>
+    <span class="mentor-tag">Humand</span>
+    <span class="mentor-tag">Pomelo</span>
+    <span class="mentor-tag">Tapi</span>
+    <span class="mentor-tag">Cometa</span>
+    <span class="mentor-tag">DigitalHouse</span>
+    <span class="mentor-tag">Exa</span>
+    <span class="mentor-tag">Kavak</span>
+    <span class="mentor-tag">Bitso</span>
+    <span class="mentor-tag">Arq</span>
+    <span class="mentor-tag">Draftea</span>
+    <span class="mentor-tag">QuintoAndar</span>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section class="section agenda-section">
+  <p class="section-label">Agenda</p>
+  <h2 class="section-title">
+    <span data-lang-es>Agenda del dia</span>
+    <span data-lang-en>Schedule</span>
+  </h2>
+  <p class="agenda-date">
+    <span data-lang-es>15 de Abril, 2025 &middot; Buenos Aires, Argentina</span>
+    <span data-lang-en>April 15, 2025 &middot; Buenos Aires, Argentina</span>
+  </p>
+  <div class="agenda-list">
+    <div class="agenda-item">
+      <span class="agenda-time">9:00 – 9:30</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Registro & Desayuno</span>
+          <span data-lang-en>Registration & Breakfast</span>
+        </h3>
+        <p>
+          <span data-lang-es>Check-in, confirmacion de creditos API, mesa de formacion de equipos para participantes individuales.</span>
+          <span data-lang-en>Check-in, API credit confirmation, team formation table for solo registrants.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">9:30 – 9:50</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Bienvenida & Kickoff</span>
+          <span data-lang-en>Welcome & Kickoff</span>
+        </h3>
+        <p>
+          <span data-lang-es>Palabras de apertura, tematica, criterios de evaluacion y proceso de envio.</span>
+          <span data-lang-en>Opening remarks, theme, judging criteria, and submission process.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">9:50 – 10:20</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Construyendo con Claude: Demo en vivo</span>
+          <span data-lang-en>Building with Claude: Live Demo</span>
+        </h3>
+        <p>
+          <span data-lang-es>Quickstart en Claude API & Claude Code, recorrido por la Guia del Hacker, Q&A.</span>
+          <span data-lang-en>Quickstart on the Claude API & Claude Code, walk through the Hacker Guide, Q&A.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">10:20 – 10:30</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Cierre de equipos</span>
+          <span data-lang-en>Team Lock</span>
+        </h3>
+        <p>
+          <span data-lang-es>Confirmacion final de equipos &mdash; comienza el hacking.</span>
+          <span data-lang-en>Final team confirmations &mdash; hacking begins.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">10:30 – 13:00</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Sesion de Construccion I</span>
+          <span data-lang-en>Build Session I</span>
+        </h3>
+        <p>
+          <span data-lang-es>Mentores de Anthropic y Kaszek circulan, snacks disponibles.</span>
+          <span data-lang-en>Anthropic and Kaszek mentors circulate, snacks flowing.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">13:00 – 13:45</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Almuerzo</span>
+          <span data-lang-en>Lunch</span>
+        </h3>
+        <p>
+          <span data-lang-es>Mesa opcional de "office hours" con el equipo de Anthropic o Kaszek.</span>
+          <span data-lang-en>Optional "office hours" table with the Anthropic or Kaszek team.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">13:45 – 17:00</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Sesion de Construccion II</span>
+          <span data-lang-en>Build Session II</span>
+        </h3>
+        <p>
+          <span data-lang-es>Anuncio de "quedan 90 minutos" a las ~15:30.</span>
+          <span data-lang-en>Mid-afternoon "90 minutes left" announcement at ~3:30 PM.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">17:00</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Entregas</span>
+          <span data-lang-en>Submissions Due</span>
+        </h3>
+        <p>
+          <span data-lang-es>Repo + descripcion breve + video demo de 2 min (~15 min de gracia para subir).</span>
+          <span data-lang-en>Repo + short description + 2-min demo video (~15 min grace for upload).</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">17:00 – 17:45</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Evaluacion</span>
+          <span data-lang-en>Judging</span>
+        </h3>
+        <p>
+          <span data-lang-es>Los jueces revisan, los participantes descomprimen con comida y bebidas.</span>
+          <span data-lang-en>Judges review, participants decompress with food & drinks.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">17:45 – 18:15</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Demos finalistas</span>
+          <span data-lang-en>Finalist Demos</span>
+        </h3>
+        <p>
+          <span data-lang-es>Top 5 equipos, 3 minutos cada uno, timing estricto.</span>
+          <span data-lang-en>Top 5 teams, 3 minutes each, strict timing.</span>
+        </p>
+      </div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-time">18:15 – 18:30</span>
+      <div class="agenda-content">
+        <h3>
+          <span data-lang-es>Premios & Cierre</span>
+          <span data-lang-en>Awards & Closing</span>
+        </h3>
+        <p>
+          <span data-lang-es>Anuncio de ganadores, premios, foto grupal.</span>
+          <span data-lang-en>Winners announced, prizes, group photo.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section">
+  <div class="cta-box">
+    <h2>
+      <span data-lang-es>Aplica antes del 8 de Abril</span>
+      <span data-lang-en>Apply before April 8</span>
+    </h2>
+    <p>
+      <span data-lang-es>Las aplicaciones cierran 1 semana antes del hackathon. Puedes venir en grupo o individualmente &mdash; armaremos equipos el dia del evento.</span>
+      <span data-lang-en>Applications close 1 week before the hackathon. Come as a group or individually &mdash; we'll form teams on event day.</span>
+    </p>
+    <a href="https://lu.ma/bz4v7m2a" target="_blank" rel="noopener" class="btn-light">
+      <span data-lang-es>Aplicar & mas informacion</span>
+      <span data-lang-en>Apply & more info</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <p>
+      <span data-lang-es>&copy; 2025 Kaszek & Anthropic. Mas informacion y aplicaciones en <a href="https://lu.ma/bz4v7m2a" target="_blank" rel="noopener">lu.ma</a>.</span>
+      <span data-lang-en>&copy; 2025 Kaszek & Anthropic. More information and applications at <a href="https://lu.ma/bz4v7m2a" target="_blank" rel="noopener">lu.ma</a>.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Language toggle
+  document.querySelectorAll('[data-set-lang]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.setLang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-toggle button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
