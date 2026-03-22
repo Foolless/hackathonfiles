@@ -351,8 +351,8 @@
 
     /* --- TRACKS --- */
     .tracks-section {
-      padding-top: var(--space-xl);
-      padding-bottom: var(--space-xxl);
+      padding-top: var(--space-md);
+      padding-bottom: var(--space-lg);
     }
 
     .section-label {
@@ -860,8 +860,8 @@
 <section class="section tracks-section">
   <p class="section-label">Tracks</p>
   <h2 class="section-title">
-    <span data-lang-es>Elige tu track</span>
-    <span data-lang-en>Choose your track</span>
+    <span data-lang-es>Tracks sugeridos con mentores especializados</span>
+    <span data-lang-en>Suggested tracks with special mentors</span>
   </h2>
   <div class="tracks-grid">
     <div class="track-card">
@@ -911,19 +911,19 @@
     <span data-lang-en>Experts from the region's top tech companies will be available throughout the day.</span>
   </p>
   <div class="mentors-grid">
-    <a href="https://www.linkedin.com/in/martinpalombo/" target="_blank" rel="noopener" class="mentor-card" style="text-decoration:none;color:inherit;">
+    <div class="mentor-card">
       <div class="mentor-photo">
         <img src="https://unavatar.io/linkedin/martinpalombo" alt="Martin Palombo" onerror="this.style.display='none';this.parentElement.textContent='MP';">
       </div>
       <div class="mentor-details">
-        <h3>Martin Palombo</h3>
+        <h3>Martin Palombo <a href="https://www.linkedin.com/in/martinpalombo/" target="_blank" rel="noopener" style="color:var(--color-text-secondary);"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a></h3>
         <p class="mentor-role">Co-Founder & CPO, TiendaNube</p>
         <p class="mentor-desc">
-          <span data-lang-es>Construyendo el sistema operativo de comercio de LATAM en Tiendanube/Nuvemshop. 15+ anos reduciendo barreras al emprendimiento en la region.</span>
-          <span data-lang-en>Building LATAM's commerce operating system at Tiendanube/Nuvemshop. 15+ years reducing entrepreneurship barriers across the region.</span>
+          <span data-lang-es>Construyendo el sistema operativo de comercio de LATAM en Tiendanube/Nuvemshop.</span>
+          <span data-lang-en>Building LATAM's commerce operating system at Tiendanube/Nuvemshop.</span>
         </p>
       </div>
-    </a>
+    </div>
     <div class="mentor-card">
       <div class="mentor-photo">AN</div>
       <div class="mentor-details">
@@ -931,8 +931,8 @@
         <h3 data-lang-en>Anthropic Team</h3>
         <p class="mentor-role">Anthropic</p>
         <p class="mentor-desc">
-          <span data-lang-es>Ingenieros y expertos del equipo de Anthropic guiando sobre Claude API, Claude Code y mejores practicas.</span>
-          <span data-lang-en>Engineers and experts from Anthropic guiding on Claude API, Claude Code, and best practices.</span>
+          <span data-lang-es>Ingenieros y expertos guiando sobre Claude API, Claude Code y mejores practicas.</span>
+          <span data-lang-en>Engineers and experts guiding on Claude API, Claude Code, and best practices.</span>
         </p>
       </div>
     </div>
@@ -943,8 +943,8 @@
         <h3 data-lang-en>Kaszek Team</h3>
         <p class="mentor-role">Kaszek</p>
         <p class="mentor-desc">
-          <span data-lang-es>Inversores y operadores de Kaszek con experiencia en producto, tecnologia y crecimiento de startups.</span>
-          <span data-lang-en>Kaszek investors and operators with expertise in product, technology, and startup growth.</span>
+          <span data-lang-es>Inversores y operadores con experiencia en producto, tech y crecimiento.</span>
+          <span data-lang-en>Investors and operators with expertise in product, tech, and growth.</span>
         </p>
       </div>
     </div>
@@ -954,8 +954,8 @@
         <h3>MercadoLibre</h3>
         <p class="mentor-role">MercadoLibre</p>
         <p class="mentor-desc">
-          <span data-lang-es>Expertos en ecommerce y fintech de la empresa tech mas grande de Latinoamerica.</span>
-          <span data-lang-en>Ecommerce and fintech experts from Latin America's largest tech company.</span>
+          <span data-lang-es>Expertos en ecommerce y fintech de la empresa tech mas grande de LATAM.</span>
+          <span data-lang-en>Ecommerce and fintech experts from LATAM's largest tech company.</span>
         </p>
       </div>
     </div>
@@ -979,8 +979,8 @@
           <span data-lang-en>Tech Education</span>
         </p>
         <p class="mentor-desc">
-          <span data-lang-es>La escuela de tecnologia lider en Latinoamerica, formando la proxima generacion de profesionales digitales.</span>
-          <span data-lang-en>Latin America's leading coding school, training the next generation of digital professionals.</span>
+          <span data-lang-es>La escuela de tecnologia lider en Latinoamerica.</span>
+          <span data-lang-en>Latin America's leading coding school.</span>
         </p>
       </div>
     </div>
@@ -1012,12 +1012,19 @@
   <div class="venue-card">
     <iframe class="venue-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3285.5!2d-58.446275!3d-34.5488099!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb436efe09303%3A0xfb39818e7624ac76!2sDigital%20House!5e0!3m2!1ses!2sar!4v1711100000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     <div class="venue-info">
-      <div class="venue-host">
-        <span data-lang-es>Hosted por Digital House</span>
-        <span data-lang-en>Hosted by Digital House</span>
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;">
+        <img src="https://images.prismic.io/dh-frontend/3daea5ec-e5b0-451a-a27e-2b039506c9ca_DigitalHouse_Logo_Black.png" alt="Digital House" height="24" style="object-fit:contain;">
+        <div class="venue-host">
+          <span data-lang-es>Hosted por Digital House</span>
+          <span data-lang-en>Hosted by Digital House</span>
+        </div>
       </div>
       <h3>Digital House</h3>
       <p class="venue-address">Monroe 860, C1428BKD<br>Belgrano, Ciudad Autonoma de Buenos Aires, Argentina</p>
+      <p style="font-size:0.85rem;color:var(--color-text-secondary);margin-bottom:var(--space-sm);line-height:1.45;">
+        <span data-lang-es>La escuela de tecnologia lider en Latinoamerica, formando profesionales digitales en Argentina, Brasil, Chile, Colombia y mas.</span>
+        <span data-lang-en>Latin America's leading tech school, training digital professionals across Argentina, Brazil, Chile, Colombia and beyond.</span>
+      </p>
       <a href="https://maps.app.goo.gl/Y3PXoM8UpRiPNs5J8" target="_blank" rel="noopener" class="venue-link">
         <span data-lang-es>Abrir en Google Maps</span>
         <span data-lang-en>Open in Google Maps</span>
