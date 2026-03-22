@@ -474,8 +474,72 @@
 
     .mentors-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: var(--space-md);
+      position: relative;
+    }
+
+    .mentors-grid-wrapper {
+      position: relative;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .mentors-grid-wrapper.expanded {
+      max-height: none !important;
+    }
+
+    .mentors-grid-wrapper::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, var(--color-bg));
+      pointer-events: none;
+      transition: opacity 0.3s;
+      z-index: 2;
+    }
+
+    .mentors-grid-wrapper.expanded::after {
+      opacity: 0;
+    }
+
+    .mentors-show-more {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin: var(--space-md) auto 0;
+      padding: 0.65rem 1.5rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--color-text);
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .mentors-show-more:hover {
+      border-color: var(--color-text-secondary);
+      background: var(--color-tag-bg);
+    }
+
+    .mentors-show-more svg {
+      transition: transform 0.3s;
+    }
+
+    .mentors-show-more.expanded svg {
+      transform: rotate(180deg);
+    }
+
+    @media (max-width: 700px) {
+      .mentors-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .mentor-card {
@@ -918,7 +982,9 @@
     <span data-lang-es>Expertos de las mejores empresas de tecnologia de la region estaran disponibles durante todo el dia.</span>
     <span data-lang-en>Experts from the region's top tech companies will be available throughout the day.</span>
   </p>
+  <div class="mentors-grid-wrapper" id="mentorsWrapper">
   <div class="mentors-grid">
+    <!-- 1 -->
     <div class="mentor-card">
       <div class="mentor-photo">
         <img src="martin-palombo.jpg" alt="Martin Palombo" onerror="this.style.display='none';this.parentElement.textContent='MP';">
@@ -932,6 +998,7 @@
         </p>
       </div>
     </div>
+    <!-- 2 -->
     <div class="mentor-card">
       <div class="mentor-photo">AN</div>
       <div class="mentor-details">
@@ -944,6 +1011,7 @@
         </p>
       </div>
     </div>
+    <!-- 3 -->
     <div class="mentor-card">
       <div class="mentor-photo">KZ</div>
       <div class="mentor-details">
@@ -956,6 +1024,7 @@
         </p>
       </div>
     </div>
+    <!-- 4 -->
     <div class="mentor-card">
       <div class="mentor-photo">ML</div>
       <div class="mentor-details">
@@ -967,6 +1036,7 @@
         </p>
       </div>
     </div>
+    <!-- 5 -->
     <div class="mentor-card">
       <div class="mentor-photo">PM</div>
       <div class="mentor-details">
@@ -978,6 +1048,7 @@
         </p>
       </div>
     </div>
+    <!-- 6 -->
     <div class="mentor-card">
       <div class="mentor-photo">DH</div>
       <div class="mentor-details">
@@ -992,19 +1063,121 @@
         </p>
       </div>
     </div>
+    <!-- 7 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">HU</div>
+      <div class="mentor-details">
+        <h3>Humand</h3>
+        <p class="mentor-role">HR Tech</p>
+        <p class="mentor-desc">
+          <span data-lang-es>Plataforma de experiencia del empleado para grandes empresas de LATAM.</span>
+          <span data-lang-en>Employee experience platform for LATAM's largest companies.</span>
+        </p>
+      </div>
+    </div>
+    <!-- 8 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">TP</div>
+      <div class="mentor-details">
+        <h3>Tapi</h3>
+        <p class="mentor-role">Fintech</p>
+        <p class="mentor-desc">
+          <span data-lang-es>Simplificando pagos y transferencias internacionales en la region.</span>
+          <span data-lang-en>Simplifying cross-border payments and transfers across the region.</span>
+        </p>
+      </div>
+    </div>
+    <!-- 9 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">CM</div>
+      <div class="mentor-details">
+        <h3>Cometa</h3>
+        <p class="mentor-role">Benefits & Payroll</p>
+        <p class="mentor-desc">
+          <span data-lang-es>Plataforma de beneficios y compensaciones flexibles para empleados.</span>
+          <span data-lang-en>Flexible employee benefits and compensation platform.</span>
+        </p>
+      </div>
+    </div>
+    <!-- 10 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">EX</div>
+      <div class="mentor-details">
+        <h3>Exa</h3>
+        <p class="mentor-role">AI Search</p>
+        <p class="mentor-desc">
+          <span data-lang-es>Motor de busqueda con IA para desarrolladores y empresas.</span>
+          <span data-lang-en>AI-powered search engine for developers and enterprises.</span>
+        </p>
+      </div>
+    </div>
+    <!-- 11 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">KV</div>
+      <div class="mentor-details">
+        <h3>Kavak</h3>
+        <p class="mentor-role">Automotive Marketplace</p>
+        <p class="mentor-desc">
+          <span data-lang-es>La plataforma de compra y venta de autos mas grande de LATAM.</span>
+          <span data-lang-en>LATAM's largest online car buying and selling platform.</span>
+        </p>
+      </div>
+    </div>
+    <!-- 12 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">BT</div>
+      <div class="mentor-details">
+        <h3>Bitso</h3>
+        <p class="mentor-role">Crypto & Payments</p>
+        <p class="mentor-desc">
+          <span data-lang-es>Plataforma cripto lider en LATAM con millones de usuarios.</span>
+          <span data-lang-en>Leading crypto platform in LATAM with millions of users.</span>
+        </p>
+      </div>
+    </div>
+    <!-- 13 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">AQ</div>
+      <div class="mentor-details">
+        <h3>Arq</h3>
+        <p class="mentor-role">Proptech</p>
+        <p class="mentor-desc">
+          <span data-lang-es>Transformando la industria inmobiliaria con tecnologia.</span>
+          <span data-lang-en>Transforming the real estate industry with technology.</span>
+        </p>
+      </div>
+    </div>
+    <!-- 14 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">DR</div>
+      <div class="mentor-details">
+        <h3>Draftea</h3>
+        <p class="mentor-role">Sports & Gaming</p>
+        <p class="mentor-desc">
+          <span data-lang-es>Fantasy sports y entretenimiento deportivo para LATAM.</span>
+          <span data-lang-en>Fantasy sports and sports entertainment for LATAM.</span>
+        </p>
+      </div>
+    </div>
+    <!-- 15 -->
+    <div class="mentor-card">
+      <div class="mentor-photo">QA</div>
+      <div class="mentor-details">
+        <h3>QuintoAndar</h3>
+        <p class="mentor-role">Proptech</p>
+        <p class="mentor-desc">
+          <span data-lang-es>Plataforma de alquiler y compra de inmuebles lider en Brasil.</span>
+          <span data-lang-en>Brazil's leading rental and real estate platform.</span>
+        </p>
+      </div>
+    </div>
   </div>
-  <div class="mentors-companies">
-    <span class="mentor-tag">TiendaNube</span>
-    <span class="mentor-tag">Humand</span>
-    <span class="mentor-tag">Tapi</span>
-    <span class="mentor-tag">Cometa</span>
-    <span class="mentor-tag">Exa</span>
-    <span class="mentor-tag">Kavak</span>
-    <span class="mentor-tag">Bitso</span>
-    <span class="mentor-tag">Arq</span>
-    <span class="mentor-tag">Draftea</span>
-    <span class="mentor-tag">QuintoAndar</span>
   </div>
+  <button class="mentors-show-more" id="mentorsShowMore" onclick="toggleMentors()">
+    <span data-lang-es>Mostrar mas mentores</span>
+    <span data-lang-en>Show more mentors</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </button>
 </section>
 
 <!-- VENUE -->
@@ -1229,6 +1402,48 @@
 </footer>
 
 <script>
+  // Mentors show more / less
+  function calcMentorsHeight() {
+    const wrapper = document.getElementById('mentorsWrapper');
+    const grid = wrapper.querySelector('.mentors-grid');
+    const cards = grid.querySelectorAll('.mentor-card');
+    if (!cards.length) return;
+    const isMobile = window.innerWidth <= 700;
+    // On mobile: show 3 cards + half of 4th. On desktop: show 6 cards (2 rows) + half of next row
+    const cutIndex = isMobile ? 3 : 6;
+    const cutCard = cards[cutIndex];
+    if (!cutCard) return;
+    const gridTop = grid.getBoundingClientRect().top;
+    const cutTop = cutCard.getBoundingClientRect().top;
+    const cutHeight = cutCard.getBoundingClientRect().height;
+    // Show full cards up to cutIndex, then half of the next card's row
+    const collapsedHeight = (cutTop - gridTop) + (cutHeight * 0.5);
+    if (!wrapper.classList.contains('expanded')) {
+      wrapper.style.maxHeight = collapsedHeight + 'px';
+    }
+    wrapper.dataset.collapsedHeight = collapsedHeight;
+  }
+
+  function toggleMentors() {
+    const wrapper = document.getElementById('mentorsWrapper');
+    const btn = document.getElementById('mentorsShowMore');
+    const isExpanded = wrapper.classList.toggle('expanded');
+    btn.classList.toggle('expanded', isExpanded);
+    if (isExpanded) {
+      wrapper.style.maxHeight = 'none';
+      btn.querySelector('[data-lang-es]').textContent = 'Mostrar menos';
+      btn.querySelector('[data-lang-en]').textContent = 'Show less';
+    } else {
+      wrapper.style.maxHeight = wrapper.dataset.collapsedHeight + 'px';
+      btn.querySelector('[data-lang-es]').textContent = 'Mostrar mas mentores';
+      btn.querySelector('[data-lang-en]').textContent = 'Show more mentors';
+    }
+  }
+
+  // Init on load and resize
+  window.addEventListener('DOMContentLoaded', calcMentorsHeight);
+  window.addEventListener('resize', calcMentorsHeight);
+
   // Language toggle
   document.querySelectorAll('[data-set-lang]').forEach(btn => {
     btn.addEventListener('click', () => {
