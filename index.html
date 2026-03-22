@@ -48,9 +48,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--space-xl);
-      padding: var(--space-lg) 0;
-      margin-bottom: var(--space-lg);
+      gap: var(--space-lg);
+      padding: var(--space-sm) 0;
+      margin-bottom: var(--space-sm);
       flex-wrap: wrap;
     }
 
@@ -233,8 +233,8 @@
 
     /* --- HERO --- */
     .hero {
-      padding-top: calc(5rem + var(--space-xxl));
-      padding-bottom: var(--space-xl);
+      padding-top: calc(4rem + var(--space-lg));
+      padding-bottom: var(--space-sm);
     }
 
     .hero-eyebrow {
@@ -246,7 +246,7 @@
       color: var(--color-accent);
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-sm);
     }
 
     .hero-eyebrow .dot {
@@ -257,27 +257,27 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 6vw, 4.25rem);
+      font-size: clamp(2.25rem, 5vw, 3.5rem);
       font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.08;
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-sm);
       max-width: 900px;
     }
 
     .hero-sub {
-      font-size: clamp(1.05rem, 2vw, 1.3rem);
+      font-size: clamp(1rem, 1.8vw, 1.15rem);
       color: var(--color-text-secondary);
       max-width: 640px;
-      line-height: 1.55;
-      margin-bottom: var(--space-lg);
+      line-height: 1.5;
+      margin-bottom: var(--space-md);
     }
 
     .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-md) var(--space-lg);
-      margin-bottom: var(--space-lg);
+      gap: var(--space-sm) var(--space-lg);
+      margin-bottom: var(--space-md);
     }
 
     .hero-meta-item {
@@ -400,8 +400,8 @@
 
     /* --- SPEAKERS --- */
     .speakers-section {
-      padding-top: var(--space-xl);
-      padding-bottom: var(--space-xxl);
+      padding-top: var(--space-md);
+      padding-bottom: var(--space-lg);
     }
 
     .speakers-grid {
@@ -414,34 +414,56 @@
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: 14px;
-      padding: var(--space-lg);
-      text-align: center;
+      padding: var(--space-md);
+      text-align: left;
+      display: flex;
+      gap: var(--space-md);
     }
 
     .speaker-avatar {
-      width: 96px;
-      height: 96px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: var(--color-tag-bg);
-      margin: 0 auto var(--space-sm);
+      flex-shrink: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: var(--color-text-secondary);
+      overflow: hidden;
+    }
+
+    .speaker-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .speaker-info {
+      flex: 1;
+      min-width: 0;
     }
 
     .speaker-card h3 {
-      font-size: 1.15rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.15rem;
     }
 
     .speaker-card .role {
-      font-size: 0.88rem;
-      color: var(--color-text-secondary);
+      font-size: 0.82rem;
+      color: var(--color-accent);
+      font-weight: 500;
       line-height: 1.4;
+      margin-bottom: 0.35rem;
+    }
+
+    .speaker-card .bio {
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+      line-height: 1.45;
     }
 
     /* --- MENTORS --- */
@@ -657,13 +679,18 @@
 
     /* --- RESPONSIVE --- */
     @media (max-width: 640px) {
-      .hero { padding-top: calc(4.5rem + var(--space-xl)); }
+      .hero { padding-top: calc(4rem + var(--space-md)); }
       .agenda-item {
         grid-template-columns: 1fr;
         gap: 0.25rem;
       }
       .speakers-grid {
         grid-template-columns: 1fr;
+      }
+      .speaker-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
       }
       .highlight-banner {
         padding: var(--space-md) var(--space-md);
@@ -776,6 +803,57 @@
   </div>
 </div>
 
+<!-- SPEAKERS (moved above highlight banner) -->
+<section class="section speakers-section">
+  <p class="section-label">Speakers</p>
+  <h2 class="section-title">
+    <span data-lang-es>Speakers principales</span>
+    <span data-lang-en>Keynote speakers</span>
+  </h2>
+  <div class="speakers-grid">
+    <div class="speaker-card">
+      <div class="speaker-avatar">
+        <img src="hernan-kazah.jpg" alt="Hernan Kazah" onerror="this.style.display='none';this.parentElement.textContent='HK';">
+      </div>
+      <div class="speaker-info">
+        <h3>Hernan Kazah</h3>
+        <p class="role">Co-Founder & Managing Partner, Kaszek</p>
+        <p class="bio">
+          <span data-lang-es>Co-fundador de Kaszek, la firma de venture capital mas grande de Latinoamerica. Co-fundador, ex-CFO y ex-COO de MercadoLibre, donde estuvo 12 anos construyendo la empresa tech mas grande de la region.</span>
+          <span data-lang-en>Co-founder of Kaszek, Latin America's largest venture capital firm. Co-founder, former CFO and COO of MercadoLibre, where he spent 12 years building the region's largest tech company.</span>
+        </p>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">
+        <img src="daniel-rabinovich.png" alt="Daniel Rabinovich" onerror="this.style.display='none';this.parentElement.textContent='DR';">
+      </div>
+      <div class="speaker-info">
+        <h3>Daniel Rabinovich</h3>
+        <p class="role">COO, MercadoLibre &middot; Anthropic Advisory Board</p>
+        <p class="bio">
+          <span data-lang-es>COO y Head de Producto y Tecnologia Global en MercadoLibre. 24+ anos en la empresa, desde developer hasta liderar producto en 13 paises. CIO del Ano 2014, egresado de Stanford y UBA.</span>
+          <span data-lang-en>COO and Head of Global Product & Technology at MercadoLibre. 24+ years at the company, from developer to leading product across 13 countries. CIO of the Year 2014, Stanford and UBA alumnus.</span>
+        </p>
+      </div>
+    </div>
+    <div class="speaker-card">
+      <div class="speaker-avatar">A</div>
+      <div class="speaker-info">
+        <h3>Anthropic</h3>
+        <p class="role">
+          <span data-lang-es>Speaker por confirmar</span>
+          <span data-lang-en>Speaker to be confirmed</span>
+        </p>
+        <p class="bio">
+          <span data-lang-es>Un miembro del equipo de Anthropic presentara las ultimas novedades sobre Claude y la vision de la empresa.</span>
+          <span data-lang-en>A member of the Anthropic team will present the latest on Claude and the company's vision.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- HIGHLIGHT BANNER -->
 <div class="section">
   <div class="highlight-banner">
@@ -832,40 +910,6 @@
   </div>
 </section>
 
-<!-- SPEAKERS -->
-<section class="section speakers-section">
-  <p class="section-label">Speakers</p>
-  <h2 class="section-title">
-    <span data-lang-es>Speakers principales</span>
-    <span data-lang-en>Keynote speakers</span>
-  </h2>
-  <div class="speakers-grid">
-    <div class="speaker-card">
-      <div class="speaker-avatar">A</div>
-      <h3>Anthropic</h3>
-      <p class="role">
-        <span data-lang-es>Speaker por confirmar</span>
-        <span data-lang-en>Speaker to be confirmed</span>
-      </p>
-    </div>
-    <div class="speaker-card">
-      <div class="speaker-avatar">HK</div>
-      <h3>Hernan Kazah</h3>
-      <p class="role">
-        <span data-lang-es>Fundador, Kaszek & MercadoLibre</span>
-        <span data-lang-en>Founder, Kaszek & MercadoLibre</span>
-      </p>
-    </div>
-    <div class="speaker-card">
-      <div class="speaker-avatar">DR</div>
-      <h3>Daniel Rabinovich</h3>
-      <p class="role">
-        <span data-lang-es>Ex-CTO & COO, MercadoLibre &middot; Anthropic Advisory Board</span>
-        <span data-lang-en>Former CTO & COO, MercadoLibre &middot; Anthropic Advisory Board</span>
-      </p>
-    </div>
-  </div>
-</section>
 
 <!-- MENTORS -->
 <section class="section mentors-section">
